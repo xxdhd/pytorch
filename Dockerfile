@@ -12,7 +12,10 @@ ENV CMAKE_PREFIX_PATH="$(dirname $(which conda))/../"
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list && \
     sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
 
-RUN apt-get update && apt-get install -y \
+# 先添加NVIDIA的GPG密钥
+RUN apt-get update && apt-get install -y gnupg2 curl && \
+    curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub | apt-key add - && \
+    apt-get update && apt-get install -y \
     ffmpeg \
     libsm6 \
     libxext6 \
