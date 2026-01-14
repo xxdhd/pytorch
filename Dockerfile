@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 5. 安装Python包
-RUN pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu101/torch1.6.0/index.html && \
+RUN pip install mmcv-full==1.4.8 -f https://download.openmmlab.com/mmcv/dist/cu101/torch1.6.0/index.html && \
     pip install mmdet && \
     pip install einops && \
     pip install torch-dct
